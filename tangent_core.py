@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Lyne Universal Systems // Lyne Aegis Core
+Lyne Universal Systems // Tangent Core
 System Data Inspector & Security Scrub Engine
 """
 
@@ -50,7 +50,7 @@ class AegisCore:
 
 
 def main():
-    print("✦ LYNE UNIVERSAL SYSTEMS // LYNE AEGIS CORE ENGINE ACTIVE")
+    print("✦ LYNE UNIVERSAL SYSTEMS // Tangent Core ENGINE ACTIVE")
     print("-" * 60)
 
     # Simulated sensitive local system log payload
