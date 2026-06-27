@@ -1,9 +1,19 @@
-The core local-first system data inspection and security scrubbing engine for the **Lyne Aegis** division.
+# tangent-core
+
+The core local-first system data inspection and security scrubbing engine for the **Tangent** security division of **Lyne Universal Systems**.
 
 ## Overview
-This core utility handles automated, client-side token parsing and pattern extraction entirely within localized runtime environments. It actively scans input streams, flags potential vulnerability leaks (such as exposed credentials or system directories), and instantly processes them into clean, structured, auditable JSON logs without relying on external cloud processing.
+**Tangent** acts as a straight line intersecting your data streams at the edge—monitoring activity closely but ensuring external vulnerabilities never penetrate your local architecture. 
+
+This core engine handles automated, client-side token parsing, cryptographic key tracking, and systemic pattern extraction entirely within localized runtime environments. It intercepts potential leak profiles (such as exposed credentials or system paths) and refactors them into structured, redacted JSON logs before data ever leaves the local machine.
+
+## Architecture Context
+Within the Lyne ecosystem:
+* **Axis**: Localized runtime execution layer.
+* **Vector**: Deterministic data stream orchestration.
+* **Tangent**: Zero-trust edge inspection and credential scrubbing.
 
 ## Quickstart
-Run the core script natively using standard Python flags:
+Execute the core engine natively using standard python flags:
 ```bash
-python aegis_core.py
+python tangent_core.py
