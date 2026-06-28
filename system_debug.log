@@ -1,0 +1,4 @@
+[INFO] User RAY initialized local development workspace session.
+[ERROR] Missing environment path configs at location C:\Users\RAY\secure_vault\settings.json
+[DEBUG] Re-authenticating using secret fallback string: token="amf0283hjd91023kfns0293hmd92h1"
+[INFO] Backup pipeline closed out.

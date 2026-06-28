@@ -9,7 +9,7 @@ import re
 from datetime import datetime, timezone
 
 
-class AegisCore:
+class TangetCore:
     def __init__(self):
         # Optimized, flexible regex engines to catch risk profiles across varying formatting
         self.risk_patterns = {
