@@ -1,19 +1,57 @@
-# tangent-core
+# Tangent
 
-The core local-first system data inspection and security scrubbing engine for the **Tangent** security division of **Lyne Universal Systems**.
+Lyne Universal Systems // Tangent — local-first system data inspector & security scrub engine.
 
-## Overview
-**Tangent** acts as a straight line intersecting your data streams at the edge—monitoring activity closely but ensuring external vulnerabilities never penetrate your local architecture. 
+## Features
+- Detects common secret patterns (basic heuristic)
+- Detects sensitive paths (e.g., `/home`, `/Users`, `C:\\Users\\...`)
+- Assignment-aware redaction: `KEY=VALUE` becomes `KEY=[REDACTED]`
+- CLI scan that writes a scrubbed output file and prints a JSON report
+- Desktop GUI dashboard for preview + export
 
-This core engine handles automated, client-side token parsing, cryptographic key tracking, and systemic pattern extraction entirely within localized runtime environments. It intercepts potential leak profiles (such as exposed credentials or system paths) and refactors them into structured, redacted JSON logs before data ever leaves the local machine.
-
-## Architecture Context
-Within the Lyne ecosystem:
-* **Axis**: Localized runtime execution layer.
-* **Vector**: Deterministic data stream orchestration.
-* **Tangent**: Zero-trust edge inspection and credential scrubbing.
-
-## Quickstart
-Execute the core engine natively using standard python flags:
+## Installation
 ```bash
-python tangent_core.py
+cd tangent-core
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Usage
+### CLI
+```bash
+cd tangent-core
+python tangent_core.py version
+python tangent_core.py scan sample.env
+```
+
+### GUI
+```bash
+cd tangent-core
+python tangent_gui.py
+```
+
+## CLI examples
+```bash
+python tangent_core.py scan /path/to/app.log
+python tangent_core.py scan /path/to/.env
+```
+
+## GUI
+Select a target file, then export the scrubbed safe copy.
+
+## Example output
+Input:
+- `SECRET_KEY=my-super-secret-key-123456`
+- `HOME=/home/raymond`
+
+Output:
+- `SECRET_KEY=[REDACTED]`
+- `HOME=[REDACTED]`
+
+## Project structure
+- `tangent-core/tangent_core.py` — core engine + CLI
+- `tangent-core/tangent_gui.py` — GUI wrapper
+- `tangent-core/tests/` — unit tests
+- `tangent-core/sample.env` — sample secrets
+

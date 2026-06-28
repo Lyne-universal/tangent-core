@@ -4,4 +4,23 @@ __pycache__/
 *.pyd
 .env
 *.temp
+*.scrubbed
+*.log.scrubbed
+
+# Python virtual environments
+.venv/
+venv/
+
+# Cache / build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Scrubber artifacts
+*.temp
+*.scrubbed
+*.scrubbed.log
+
+
 

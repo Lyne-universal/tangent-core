@@ -8,8 +8,8 @@ __version__ = "0.1.0"
 
 import argparse
 import json
-import os
 import re
+
 import sys
 from datetime import datetime, timezone
 
@@ -39,22 +39,25 @@ class TangentEngine:
                 # Simple but effective redaction strategy:
                 # - keep the key/left side when the secret is an assignment-like value
                 # - otherwise redact the whole line
-                m = re.match(r"(?i)\s*([a-zA-Z0-9_\-\.]+)\s*[:=]", redacted)
+                # If it looks like an assignment (KEY=VALUE or KEY: VALUE), redact only VALUE.
+                m = re.match(r"(?i)\s*([a-zA-Z0-9_\-\.]+)\s*([:=])\s*", redacted)
                 if m:
                     key = m.group(1)
-                    # replace only the right-hand sensitive value-ish segment
-                    redacted = re.sub(
-                        pattern,
-                        f"{key}=[REDACTED]",
-                        redacted,
-                        flags=re.IGNORECASE,
-                    )
+                    sep = m.group(2)
+                    # Always redact the RHS for assignment-like lines that match a sensitive pattern,
+                    # so we never accidentally duplicate the key on the left side.
+                    redacted = f"{key}{sep}[REDACTED]"
                 else:
-                    redacted = re.sub(pattern, "[REDACTED]", redacted)
+                    # Non-assignment line: redact matching content.
+                    redacted = re.sub(pattern, "[REDACTED]", redacted, flags=re.IGNORECASE)
+
+
+
 
                 # If we inserted REDACTED anywhere, consider the line changed.
                 if "[REDACTED" in redacted and redacted != line:
                     changed = True
+
 
         return redacted, changed
 
