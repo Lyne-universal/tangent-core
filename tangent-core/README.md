@@ -1,5 +1,12 @@
-# Tangent v0.1.0
+# tangent-core
 
-Lyne Universal Systems // Tangent Core
+Tangent is the local-first system data inspector & security scrub engine.
+
+## Quickstart
+
+```bash
+python tangent_core.py
+```
+
 
 
