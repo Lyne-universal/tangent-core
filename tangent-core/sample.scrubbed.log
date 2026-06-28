@@ -1,0 +1,6 @@
+DEBUG=True
+SECRET_SECRET_KEY=[REDACTED]
+API_KEY=[REDACTED]
+DATABASE_URL=postgres://user:password@localhost/db
+HOME=HOME=[REDACTED]/raymond
+
