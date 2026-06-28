@@ -160,10 +160,18 @@ def main():
         return
 
     if args.command == "scan":
-        print("CLI connected successfully.")
-        print(f"Target file: {args.file}")
-        print("We are not scanning yet")
-        return
+        engine = TangentEngine()
+
+        output_file = f"{args.file}.scrubbed"
+        report = engine.process_file(args.file, output_file)
+
+        print(json.dumps(report, indent=4))
+
+        if report["metrics"]["vulnerabilities_neutralized"] > 0:
+            sys.exit(1)
+
+        sys.exit(0)
+
 
     parser.print_help()
 
