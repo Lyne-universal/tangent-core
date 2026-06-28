@@ -6,10 +6,13 @@ System Data Inspector & Security Scrub Engine
 
 __version__ = "0.1.0"
 
+import argparse
 import json
 import os
 import re
+import sys
 from datetime import datetime, timezone
+
 
 
 class TangentEngine:
@@ -129,21 +132,42 @@ def load_sample_env(sample_env_path: str) -> str:
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        prog="tangent",
+        description="Tangent - Local-first credential inspection and security scrubber.",
+    )
 
-    print("Tangent Core ENGINE ACTIVE")
-    print("-" * 60)
+    subparsers = parser.add_subparsers(dest="command")
 
-    # Load a real local sample env file and scan its contents
-    sample_env_path = os.path.join(os.path.dirname(__file__), "sample.env")
-    sample_system_payload = load_sample_env(sample_env_path)
+    scan_parser = subparsers.add_parser(
+        "scan",
+        help="Scan a file for sensitive information.",
+    )
+    scan_parser.add_argument(
+        "file",
+        help="Path to the file to scan.",
+    )
 
-    inspector = TangentEngine()
-    audit_report = inspector.inspect_buffer(sample_system_payload)
+    subparsers.add_parser(
+        "version",
+        help="Show Tangent version.",
+    )
 
+    args = parser.parse_args()
 
-    # Output clean, schema-compliant system logs directly to standard out
-    print(json.dumps(audit_report, indent=4))
+    if args.command == "version":
+        print(f"Tangent v{__version__}")
+        return
+
+    if args.command == "scan":
+        print("CLI connected successfully.")
+        print(f"Target file: {args.file}")
+        print("We are not scanning yet")
+        return
+
+    parser.print_help()
 
 
 if __name__ == "__main__":
     main()
+
